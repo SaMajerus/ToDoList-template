@@ -1,39 +1,48 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Calendar;
+using ToDoList.Models;
 
-namespace Calendar.Tests
+namespace ToDoList.Tests
 {
   [TestClass]
-  public class LeapYearTests
+  public class ItemTests
   {
+
     [TestMethod]
-    public void IsLeapYear_NumberDivisibleByFour_True()
+    public void ItemConstructor_CreatesInstanceOfItem_Item()
     {
-      LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(true, testLeapYear.IsLeapYear(2012));
-      //Assert.AreEqual(false, testLeapYear.IsLeapYear(2011));  //Added before the Second test was -- it passed.
+      Item newItem = new Item("test");  //We pass in "test" as an argument here 
+      Assert.AreEqual(typeof(Item), newItem.GetType());
     }
     
     [TestMethod]
-    public void IsLeapYear_NumberNotDivisibleByFour_False()
+    public void GetDescription_ReturnsDescription_String()
     {
-      LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(false, testLeapYear.IsLeapYear(1999));
+      //Arrange
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
+
+      //Act
+      string result = newItem.Description;
+
+      //Assert
+      Assert.AreEqual(description, result);
     }
 
     [TestMethod]
-    public void IsLeapYear_MultiplesOfOneHundred_False()
+    public void SetDescription_SetDescription_String()
     {
-      LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(false, testLeapYear.IsLeapYear(1900));
-    }
+      //Arrange
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
 
-    [TestMethod]
-    public void IsLeapYear_MultiplesOfFourHundred_True()
-    {
-      LeapYear testLeapYear = new LeapYear();
-      Assert.AreEqual(true, testLeapYear.IsLeapYear(2000));
-    }
+      //Act
+      string updatedDescription = "Do the dishes";
+      newItem.Description = updatedDescription;
+      string result = newItem.Description;
 
+      //Assert
+      Assert.AreEqual(updatedDescription, result);
+    }
+    
   }
 }
