@@ -1,34 +1,42 @@
 /*     UI Logic     */ 
-
-
-
-/* 
 using System;
 using System.Collections.Generic;
-using Triangle;
+using ToDoList.Models;
 
-namespace Triangle
+namespace ToDoList
 {
   public class Program
   {
+    public string CmdInput { get; set; }
+    
+    public void CmdProcessor(string input)
+    {
+      CmdInput = input;
+    }
+    
     public static void Main()
     {
-      Console.WriteLine("Enter the length for Side 1:  ");
-      string stringS1 = Console.ReadLine();
-      int s1 = int.Parse(stringS1);
-
-      Console.WriteLine("Enter the length for Side 2:  ");
-      string stringS2 = Console.ReadLine();
-      int s2 = int.Parse(stringS2);
-
-      Console.WriteLine("Enter the length for Side 3:  ");
-      string stringS3 = Console.ReadLine();
-      int s3 = int.Parse(stringS3);
-
-      Triangle testThis = new Triangle(s1, s2, s3);
-      Console.WriteLine(testThis.Classify());
+      Console.WriteLine("Welcome to the To Do List");
+      Console.WriteLine("Would you like to add an item to your list or view your list? (Add/View)");
       
+      //Save user input to string variable, run through branch logic to make sure they entered a valid command phrase.
+      string userInput = Console.ReadLine().ToLower();
+      
+      if (userInput == "add") {
+        Console.WriteLine("Please enter the description for the new item.");
+        string item = Console.ReadLine();
+        
+        // add to list
+        Item newItem = new Item(item); 
+
+      } else if (userInput == "view"){
+        Console.WriteLine("Your list: ");
+
+        // display list
+        /*Code goes here*/ 
+      } else {
+        Console.WriteLine("This is not a valid command, please try again");
+      }
     }
   }
 }
-*/ 
